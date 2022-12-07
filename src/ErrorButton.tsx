@@ -11,6 +11,21 @@ enum States {
   NORMAL,
   LOADING,
   ERROR,
+  SUCCESS,
+}
+
+const getButtonColor = (state: States) => {
+  switch (state) {
+    case States.ERROR: {
+      return "secondary"
+    }
+    case States.SUCCESS: {
+      return "primary"
+    }
+    default: {
+      return "default"
+    }
+  }
 }
 
 const ErrorButton = () => {
@@ -28,7 +43,7 @@ const ErrorButton = () => {
 
   return (
     <Button
-      color={buttonState === States.ERROR ? "secondary" : "default"}
+      color={getButtonColor(buttonState)}
       onClick={onClick}
       disabled={buttonState === States.LOADING}
       variant="contained">
