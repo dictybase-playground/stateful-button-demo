@@ -1,10 +1,16 @@
-import { useState } from "react"
+import { useState , ReactNode} from "react"
 import { Button } from "@material-ui/core"
 
 const successfulFetch = () => {
   return new Promise((resolve) => {
     setTimeout(() => resolve("success"), 2000)
   })
+}
+
+type ButtonStates = "NORMAL" | "LOADING" | "ERROR" | "SUCCESS"
+
+const selectButton : Record<ButtonStates,ReactNode> = {
+	NORMAL: 
 }
 
 enum States {
