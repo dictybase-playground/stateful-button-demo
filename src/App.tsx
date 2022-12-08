@@ -1,16 +1,12 @@
 import { Grid, Container } from "@material-ui/core"
-import SuccessButton from "./SuccessButton"
-import ErrorButton from "./ErrorButton"
+import LoadingSuccess from "./LoadingSuccess"
 
 function App() {
   return (
     <Container>
       <Grid container spacing={2} direction="column">
         <Grid item>
-          <SuccessButton />
-        </Grid>
-        <Grid item>
-          <ErrorButton />
+          <LoadingSuccess />
         </Grid>
       </Grid>
     </Container>
