@@ -62,4 +62,18 @@ Similarly, when a child is removed, the component will be given the EXITING stat
 
 Since we want to animate changing from one **Button** component to another in the same place, we can render two different buttons on top of one another while the **opacity** _decreases_ for the initial Button and the **opacity** _increases_ for the incoming Button.
 
-note: I should probably explain a few more things, and probably cut down the explanation on the react-transition-group components, I will finish this sometime before Monday morning
+For example, When our **buttonState** atom changes, from "NORMAL" to "LOADING", the NormalButton component will be removed from the TransitionGroup's children and the LoadingButton component will be added. For a time, both components will be present:
+
+-The NormalButton in the EXITING state, its opacity gradually changes from 1 to 0
+
+-The LoadingButton in the ENTERING state, begins at 0.5
+
+After the transition period:
+
+-The NormalButton is in the EXITING state, it is immediately unmounted
+
+-The LoadingButton is in the ENTERED state, its opacity gradually changes from 0.5 to 1
+
+### With Transition
+
+To avoid altering the Button Component files themselves to give them the transition styles, I created a WithTransition component that wraps the its children in a MUI Box component, which is what actually receives the transition styles.

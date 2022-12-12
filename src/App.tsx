@@ -2,6 +2,7 @@ import { Grid, Container } from "@material-ui/core"
 import { Provider } from "jotai"
 import LoadingSuccess from "./LoadingSuccess"
 import LoadingError from "./LoadingError"
+import LoadingErrorTransition from "./LoadingErrorTransition"
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
         <Grid item>
           <Provider>
             <LoadingError />
+          </Provider>
+        </Grid>
+        <Grid item>
+          <Provider>
+            <LoadingErrorTransition />
           </Provider>
         </Grid>
       </Grid>

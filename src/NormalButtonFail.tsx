@@ -23,6 +23,7 @@ const NormalButtonFail = () => {
       setButtonState("ERROR")
     }
   }
+
   return (
     <Button
       className={root}

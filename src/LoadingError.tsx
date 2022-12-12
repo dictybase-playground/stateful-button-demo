@@ -11,9 +11,9 @@ const selectButton: Record<ButtonStates, ReactNode> = {
   ERROR: <ErrorButton />,
 }
 
-const LoadingSuccess = () => {
+const LoadingError = () => {
   const buttonState = useAtomValue(ButtonStateAtom)
   return <>{selectButton[buttonState as keyof typeof selectButton]}</>
 }
 
-export default LoadingSuccess
+export default LoadingError
