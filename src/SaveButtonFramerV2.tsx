@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef } from "react"
+import { ReactNode } from "react"
 import { useAtom } from "jotai"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button, CircularProgress, PropTypes } from "@material-ui/core"
@@ -16,22 +16,34 @@ const successfulFetch = () => {
 
 const buttonText: Record<ButtonStates, ReactNode> = {
   NORMAL: (
-    <motion.span key="normal" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span
+      key="normal"
+      initial={{ y: 0 }}
+      exit={{ y: -30, position: "absolute" }}>
       {"Save"}
     </motion.span>
   ),
   LOADING: (
-    <motion.span key="loading" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span
+      key="loading"
+      initial={{ y: 0 }}
+      exit={{ y: -30, position: "absolute" }}>
       {"Loading"}
     </motion.span>
   ),
   DONE: (
-    <motion.span key="done" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span
+      key="done"
+      initial={{ y: 0 }}
+      exit={{ y: -30, position: "absolute" }}>
       {"Done!"}
     </motion.span>
   ),
   ERROR: (
-    <motion.span key="error" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span
+      key="error"
+      initial={{ y: 0 }}
+      exit={{ y: -30, position: "absolute" }}>
       {"Error"}
     </motion.span>
   ),
@@ -51,7 +63,7 @@ const buttonIcon: Record<ButtonStates, ReactNode> = {
   ERROR: <ErrorIcon />,
 }
 
-const SaveButton = forwardRef<HTMLButtonElement>((_, ref) => {
+const SaveButton = () => {
   const [buttonState, setButtonState] = useAtom(ButtonStateAtom)
   const { root } = useButtonStyles()
 
@@ -70,7 +82,6 @@ const SaveButton = forwardRef<HTMLButtonElement>((_, ref) => {
   }
   return (
     <Button
-      ref={ref}
       className={root}
       variant="contained"
       color={buttonColor[buttonState]}
@@ -80,6 +91,6 @@ const SaveButton = forwardRef<HTMLButtonElement>((_, ref) => {
       <AnimatePresence>{buttonText[buttonState]}</AnimatePresence>
     </Button>
   )
-})
+}
 
 export default SaveButton
