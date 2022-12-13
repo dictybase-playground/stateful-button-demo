@@ -1,7 +1,7 @@
 import { Grid, Container } from "@material-ui/core"
 import { Provider } from "jotai"
 import SaveButton from "./SaveButton"
-import SaveButtonFramer from "./SaveButtonFramer"
+import SaveButtonFramerV2 from "./SaveButtonFramerV2"
 import SaveButtonReactSimpleAnimate from "./SaveButtonReactSimpleAnimate"
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         </Grid>
         <Grid item>
           <Provider>
-            <SaveButtonFramer />
+            <SaveButtonFramerV2 />
           </Provider>
         </Grid>
         <Grid item>

@@ -21,17 +21,17 @@ const buttonText: Record<ButtonStates, ReactNode> = {
     </motion.span>
   ),
   LOADING: (
-    <motion.span key="normal" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span key="loading" initial={{ y: 0 }} exit={{ y: -30 }}>
       {"Loading"}
     </motion.span>
   ),
   DONE: (
-    <motion.span key="normal" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span key="done" initial={{ y: 0 }} exit={{ y: -30 }}>
       {"Done!"}
     </motion.span>
   ),
   ERROR: (
-    <motion.span key="normal" initial={{ y: 0 }} exit={{ y: -30 }}>
+    <motion.span key="error" initial={{ y: 0 }} exit={{ y: -30 }}>
       {"Error"}
     </motion.span>
   ),
@@ -82,14 +82,4 @@ const SaveButton = forwardRef<HTMLButtonElement>((_, ref) => {
   )
 })
 
-const SaveButtonMotion = motion(SaveButton)
-
-const SaveButtonFramer = () => (
-  <SaveButtonMotion
-    initial={{ x: -100 }}
-    animate={{ x: 0 }}
-    whileHover={{ scale: 1.2 }}
-  />
-)
-
-export default SaveButtonFramer
+export default SaveButton
