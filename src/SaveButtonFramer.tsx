@@ -1,6 +1,6 @@
 import { ReactNode, forwardRef } from "react"
 import { useAtom } from "jotai"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button, CircularProgress, PropTypes } from "@material-ui/core"
 import SaveIcon from "@material-ui/icons/Save"
 import DoneIcon from "@material-ui/icons/Done"
@@ -61,7 +61,15 @@ const SaveButton = forwardRef<HTMLButtonElement>((_, ref) => {
       disabled={buttonState === "LOADING"}
       onClick={onClick}
       startIcon={buttonIcon[buttonState]}>
-      {buttonText[buttonState]}
+      <AnimatePresence>
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 5, ease: "easeInOut" }}
+          exit={{ opacity: 0 }}>
+          {buttonText[buttonState]}
+        </motion.div>
+      </AnimatePresence>
     </Button>
   )
 })
@@ -76,4 +84,4 @@ const SaveButtonFramer = () => (
   />
 )
 
-export default SaveButtonFramer
+export { SaveButtonFramer, SaveButton }
