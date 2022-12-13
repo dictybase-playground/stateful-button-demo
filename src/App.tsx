@@ -1,8 +1,8 @@
 import { Grid, Container } from "@material-ui/core"
 import { Provider } from "jotai"
-import LoadingSuccess from "./LoadingSuccess"
-import LoadingError from "./LoadingError"
-import LoadingErrorTransition from "./LoadingErrorTransition"
+import SaveButton from "./SaveButton"
+import SaveButtonFramer from "./SaveButtonFramer"
+import SaveButtonReactSimpleAnimate from "./SaveButtonReactSimpleAnimate"
 
 function App() {
   return (
@@ -10,17 +10,17 @@ function App() {
       <Grid container spacing={2} direction="column">
         <Grid item>
           <Provider>
-            <LoadingSuccess />
+            <SaveButton />
           </Provider>
         </Grid>
         <Grid item>
           <Provider>
-            <LoadingError />
+            <SaveButtonFramer />
           </Provider>
         </Grid>
         <Grid item>
           <Provider>
-            <LoadingErrorTransition />
+            <SaveButtonReactSimpleAnimate />
           </Provider>
         </Grid>
       </Grid>
