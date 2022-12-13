@@ -1,9 +1,9 @@
 import { Button } from "@material-ui/core"
 
-const ErrorButton = () => (
+const ErrorLoading = () => (
   <Button variant="contained" color="secondary">
     {"Error"}
   </Button>
 )
 
-export default ErrorButton
+export default ErrorLoading

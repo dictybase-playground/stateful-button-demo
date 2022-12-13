@@ -15,7 +15,7 @@ const selectButtonText: Record<ButtonStates, string> = {
   DONE: "Done ..",
 }
 
-const NormalButton = () => {
+const NormalLoading = () => {
   const [buttonState, setButtonState] = useAtom(ButtonStateAtom)
   const onClick = async () => {
     setButtonState("LOADING")
@@ -35,4 +35,4 @@ const NormalButton = () => {
   )
 }
 
-export default NormalButton
+export default NormalLoading
