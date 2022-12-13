@@ -1,33 +1,36 @@
 import { Button } from "@material-ui/core"
-import SaveIcon from "@material-ui/icons/Save"
-import { ButtonStateAtom } from "./state"
-import { useSetAtom } from "jotai"
+import { ButtonStateAtom, ButtonStates } from "./state"
+import { useAtom } from "jotai"
 
-const successfulFetch = () => {
+const fancyWait = (time:number) => {
   return new Promise((resolve) => {
-    setTimeout(() => resolve("success"), 2000)
+    setTimeout(() => resolve("success"), time)
   })
 }
 
+const selectButtonText: Record<ButtonStates, string> = {
+  NORMAL: "Save",
+  LOADING: ".. Loading",
+  ERROR: "Error",
+  DONE: "Done ..",
+}
+
 const NormalButton = () => {
-  const setButtonState = useSetAtom(ButtonStateAtom)
+  const [buttonState, setButtonState] = useAtom(ButtonStateAtom)
   const onClick = async () => {
     setButtonState("LOADING")
     try {
-      await successfulFetch()
+      await fancyWait(2500)
+      setButtonState("DONE")
+      await fancyWait(2000)
       setButtonState("NORMAL")
     } catch (error) {
       setButtonState("ERROR")
     }
   }
   return (
-    <Button
-      size="large"
-      variant="contained"
-      color="primary"
-      onClick={onClick}
-      startIcon={<SaveIcon />}>
-      {"Save"}
+    <Button size="large" variant="contained" color="primary" onClick={onClick}>
+      {selectButtonText[buttonState]}
     </Button>
   )
 }
