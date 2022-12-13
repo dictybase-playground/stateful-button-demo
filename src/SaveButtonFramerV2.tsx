@@ -77,7 +77,7 @@ const SaveButton = () => {
     } finally {
       setTimeout(() => {
         setButtonState("NORMAL")
-      }, 1500)
+      }, 2000)
     }
   }
   return (
