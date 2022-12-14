@@ -50,7 +50,11 @@ const SaveButton = () => {
   const { root } = useButtonStyles()
 
   const onClick = async () => {
-    if (buttonState === "ERROR") return
+    // A better solution would probably be to set the button's state to disabled
+    // when in the DONE or ERROR state, and override MUI's default styling for
+    // a disabled button. Will try tomorrow, if time permits
+    if (buttonState !== "NORMAL") return
+
     setButtonState("LOADING")
     try {
       await successfulFetch()
