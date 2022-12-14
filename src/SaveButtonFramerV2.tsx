@@ -21,9 +21,9 @@ type TextSlideProperties = {
 const TextSlide = ({ text }: TextSlideProperties) => (
   <motion.div
     key={text}
-    initial={{ x: 150, opacity: 0 }}
-    animate={{ x: 15, opacity: 1 }}
-    transition={{ delay: 0.1, duration: 1, ease: "linear" }}>
+    initial={{ x: 70, opacity: 0 }}
+    animate={{ x: 10, opacity: 1 }}
+    transition={{ delay: 0.09, duration: 0.6, ease: "easeIn" }}>
     {text}
   </motion.div>
 )
