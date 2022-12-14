@@ -10,7 +10,7 @@ import useButtonStyles from "./useButtonStyles"
 
 const successfulFetch = () => {
   return new Promise((_, reject) => {
-    setTimeout(() => reject("error"), 2000)
+    setTimeout(() => reject("error"), 3000)
   })
 }
 
@@ -19,7 +19,11 @@ type TextSlideProperties = {
 }
 
 const TextSlide = ({ text }: TextSlideProperties) => (
-  <motion.div key={text} initial={{ y: 20 }} animate={{ y: 0 }}>
+  <motion.div
+    key={text}
+    initial={{ x: 150, opacity: 0 }}
+    animate={{ x: 15, opacity: 1 }}
+    transition={{ delay: 0.1, duration: 1, ease: "linear" }}>
     {text}
   </motion.div>
 )
