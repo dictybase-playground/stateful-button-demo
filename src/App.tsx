@@ -18,11 +18,6 @@ function App() {
             <SaveButtonFramerV2 />
           </Provider>
         </Grid>
-        <Grid item>
-          <Provider>
-            <SaveButtonReactSimpleAnimate />
-          </Provider>
-        </Grid>
       </Grid>
     </Container>
   )
