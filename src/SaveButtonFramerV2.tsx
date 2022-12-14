@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
+import { ReactNode, forwardRef } from "react"
 import { useAtom } from "jotai"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Button, CircularProgress, PropTypes } from "@material-ui/core"
 import SaveIcon from "@material-ui/icons/Save"
 import DoneIcon from "@material-ui/icons/Done"
@@ -14,45 +14,21 @@ const successfulFetch = () => {
   })
 }
 
-// some repetitive code underneath. If this is a viable solution,
-// I can create a separate component for it
+type TextSlideProperties = {
+  text: string
+}
+
+const TextSlide = ({ text }: TextSlideProperties) => (
+  <motion.div key={text} initial={{ y: 20 }} animate={{ y: 0 }}>
+    {text}
+  </motion.div>
+)
+
 const buttonText: Record<ButtonStates, ReactNode> = {
-  NORMAL: (
-    <motion.span
-      key="normal"
-      initial={{ y: 30 }}
-      animate={{ y: 0 }}
-      exit={{ y: -30, position: "absolute" }}>
-      {"Save"}
-    </motion.span>
-  ),
-  LOADING: (
-    <motion.span
-      key="loading"
-      initial={{ y: 30 }}
-      animate={{ y: 0 }}
-      exit={{ y: -30, position: "absolute" }}>
-      {"Loading"}
-    </motion.span>
-  ),
-  DONE: (
-    <motion.span
-      key="done"
-      initial={{ y: 30 }}
-      animate={{ y: 0 }}
-      exit={{ y: -30, position: "absolute" }}>
-      {"Done!"}
-    </motion.span>
-  ),
-  ERROR: (
-    <motion.span
-      key="error"
-      initial={{ y: 30 }}
-      animate={{ y: 0 }}
-      exit={{ y: -30, position: "absolute" }}>
-      {"Error"}
-    </motion.span>
-  ),
+  NORMAL: <TextSlide text={"Save"} />,
+  LOADING: <TextSlide text={"Loading"} />,
+  DONE: <TextSlide text={"Done!"} />,
+  ERROR: <TextSlide text={"Error"} />,
 }
 
 const buttonIcon: Record<ButtonStates, ReactNode> = {
@@ -62,13 +38,19 @@ const buttonIcon: Record<ButtonStates, ReactNode> = {
   ERROR: <ErrorIcon />,
 }
 
-// I removed the disabled property for the loading state and kept it to a single
-// color so we can observe the animation clearly.
+const buttonColor: Record<ButtonStates, PropTypes.Color> = {
+  NORMAL: "primary",
+  LOADING: "default",
+  DONE: "primary",
+  ERROR: "secondary",
+}
+
 const SaveButton = () => {
   const [buttonState, setButtonState] = useAtom(ButtonStateAtom)
   const { root } = useButtonStyles()
 
   const onClick = async () => {
+    if (buttonState === "ERROR") return
     setButtonState("LOADING")
     try {
       await successfulFetch()
@@ -85,9 +67,11 @@ const SaveButton = () => {
     <Button
       className={root}
       variant="contained"
+      color={buttonColor[buttonState]}
+      disabled={buttonState === "LOADING"}
       onClick={onClick}
       startIcon={buttonIcon[buttonState]}>
-      <AnimatePresence>{buttonText[buttonState]}</AnimatePresence>
+      {buttonText[buttonState]}
     </Button>
   )
 }
